@@ -1,0 +1,18 @@
+.button {
+  cursor: pointer;
+  font-family: 'Montserrat', Roboto, Helvetica Neue, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 18px 42px;
+  background-color: #B1F25E;
+  border-radius: 5px;
+  border: 3px solid black;
+  box-shadow: 4px 4px 0 0 black;
+  transition: all 0.15s ease-in;
+}
+
+.button:hover {
+  background-color: #8FF111;
+  box-shadow: 0 0;
+  transform: translate(4px, 4px);
+}
