@@ -7,7 +7,7 @@ export default function Custom404() {
   return (
     <div className={styles.container}>
       <h1>404 - Page Not Found</h1>
-      <Image src={'/page404.svg'} alt="Page not found" width={500} height={361} />
+      <Image src={'/page404.svg'} alt="Page not found" width={500} height={361} style={{minWidth: 300}}/>
       <Link href="/">
         <a><Button title='Вернись на главную'/></a>
       </Link>

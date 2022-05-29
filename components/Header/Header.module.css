@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.heading {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 64px;
+  color: white;
+  background-color: black;
+  padding: 12px 90px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.navigation {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.list {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+.list li {
+  font-size: 24px;
+}
