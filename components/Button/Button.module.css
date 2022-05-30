@@ -11,7 +11,15 @@
   transition: all 0.15s ease-in;
 }
 
-.button:hover {
+.button__large {
+  font-size: 40px;
+  padding: 21px 46px;
+  transform: rotate(-2deg);
+}
+
+.button:hover,
+.buttpn:active,
+.button:focus {
   background-color: #8FF111;
   box-shadow: 0 0;
   transform: translate(4px, 4px);
