@@ -1,0 +1,26 @@
+.container {
+  padding: 0 10%;
+  background: url('/backgroundPath.svg') no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-color: #FFDCA8;
+}
+
+@media (min-width: 1540px) {
+  .container {
+    padding: 0 260px;
+  }
+}
+
+@media (min-width: 1830px) {
+  .container {
+    padding: 0 230px;
+  }
+}
+
+@media (max-width: 760px) {
+  .container {
+    padding: 0 5%;
+  }
+}

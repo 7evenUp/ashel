@@ -4,17 +4,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Button from '../components/Button'
 import Card from '../components/Card'
-import Header from '../components/Header'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>Ashel website</title>
         <meta name="description" content="Ashel website blog-portfolio" />
       </Head>
-      <Header />
       <main className={styles.main}>
         <div className={styles.welcome}>
           <div className={styles.welcome_text}>
@@ -53,7 +51,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </main>
-    </div>
+    </>
   )
 }
 

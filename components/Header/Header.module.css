@@ -29,3 +29,139 @@
 .list li {
   font-size: 24px;
 }
+
+@media (max-width: 1212px) {
+  .heading {
+    font-size: 48px;
+    padding: 10px 64px;
+  }
+
+  .navigation {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 976px) {
+  .heading {
+    font-size: 40px;
+    padding: 8px 48px;
+  }
+
+  .list {
+    gap: 24px;
+  }
+
+  .list li {
+    font-size: 20px;
+  }
+}
+
+.burger_nav {
+  display: none;
+}
+
+@media (max-width: 664px) {
+  .navigation {
+    display: none;
+  }
+
+  .burger_nav {
+    display: block;
+    width: 40px;
+    height: 35px;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .burger_btn, .burger_btn::before, .burger_btn::after {
+    display: block;
+    width: 40px;
+    height: 5px;
+    background-color: black;
+    border-radius: 2px;
+    position: absolute;
+    top: calc(50% - 2.5px);
+    transition: all 0.35s ease-in;
+    z-index: 100;
+    cursor: pointer;
+  }
+
+  .burger_btn {
+    background-color: black;
+  }
+
+  .burger_btn::before {
+    content: '';
+    margin-top: -12.5px;
+  }
+
+  .burger_btn::after {
+    content: '';
+    margin-top: 12.5px;
+  }
+
+  .burger_nav__active .burger_btn {
+    background-color: transparent;
+  }
+
+  .burger_nav__active .burger_btn::before {
+    transform: rotate(45deg);
+    margin-top: 0;
+    background-color: white;
+  }
+
+  .burger_nav__active .burger_btn::after {
+    transform: rotate(-45deg);
+    margin-top: 0;
+    background-color: white;
+  }
+
+  .burger_menu {
+    background-color: rgba(177, 242, 94, 0.95);
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(130%);
+    transition: all 0.4s ease-in;
+  }
+
+  .burger_nav__active .burger_menu {
+    transform: translateX(0);
+  }
+
+  .burger_menu ul {
+    list-style: none;
+    text-align: center;
+  }
+
+  .burger_menu li {
+    color: white;
+    font-size: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+    line-height: 2;
+  }
+
+  .burger_menu li::before {
+    content: '';
+    transform: scale(0);
+    transition: all 0.25s;
+    position: absolute;
+    width: 89px;
+    height: 3px;
+    background-color: white;
+    top: calc(100% - 9px);
+    left: calc(50% - 45px);
+  }
+
+  .burger_menu li:hover::before {
+    transform: scale(1);
+  }
+}
