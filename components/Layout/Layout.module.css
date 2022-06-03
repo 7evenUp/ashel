@@ -5,6 +5,7 @@
   background-position: center center;
   background-attachment: fixed;
   background-color: #FFDCA8;
+  min-height: 100vh;
 }
 
 @media (min-width: 1540px) {
