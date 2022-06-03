@@ -30,6 +30,10 @@
   font-size: 24px;
 }
 
+.link__active {
+  text-decoration: underline;
+}
+
 @media (max-width: 1212px) {
   .heading {
     font-size: 48px;
@@ -163,5 +167,13 @@
 
   .burger_menu li:hover::before {
     transform: scale(1);
+  }
+
+  .burger_link__active {
+    color: #F25E9C !important;
+  }
+
+  .burger_link__active::before {
+    background-color: #F25E9C !important;
   }
 }

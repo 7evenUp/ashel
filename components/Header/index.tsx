@@ -1,9 +1,11 @@
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { useState } from "react"
 import styles from './Header.module.css'
 
 const Header = () => {
   const [burgerClicked, setBurgerClicked] = useState(false)
+  const router = useRouter()
   
   return (
     <header className={styles.container}>
@@ -16,22 +18,22 @@ const Header = () => {
         <button type="button" className={styles.burger_btn}></button>
         <nav className={styles.burger_menu}>
           <ul>
-            <li>
+            <li className={router.pathname === "/blog" ? styles.burger_link__active : ""}>
               <Link href={'blog'}>
                 <a>Блог</a>
               </Link>
             </li>
-            <li>
+            <li className={router.pathname === "/works" ? styles.burger_link__active : ""}>
               <Link href={'works'}>
                 <a>Работы</a>
               </Link>
             </li>
-            <li>
+            <li className={router.pathname === "/gallery" ? styles.burger_link__active : ""}>
               <Link href={'gallery'}>
                 <a>Галерея</a>
               </Link>
             </li>
-            <li>
+            <li className={router.pathname === "/contacts" ? styles.burger_link__active : ""}>
               <Link href={'contacts'}>
                 <a>Контакты</a>
               </Link>
@@ -41,22 +43,22 @@ const Header = () => {
       </div>
       <nav className={styles.navigation}>
         <ul className={styles.list}>
-          <li>
+          <li className={router.pathname === "/blog" ? styles.link__active : ""}>
             <Link href={'blog'}>
               <a>Блог</a>
             </Link>
           </li>
-          <li>
+          <li className={router.pathname === "/works" ? styles.link__active : ""}>
             <Link href={'works'}>
               <a>Работы</a>
             </Link>
           </li>
-          <li>
+          <li className={router.pathname === "/gallery" ? styles.link__active : ""}>
             <Link href={'gallery'}>
               <a>Галерея</a>
             </Link>
           </li>
-          <li>
+          <li className={router.pathname === "/contacts" ? styles.link__active : ""}>
             <Link href={'contacts'}>
               <a>Контакты</a>
             </Link>
