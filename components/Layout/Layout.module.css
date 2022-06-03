@@ -19,8 +19,20 @@
   }
 }
 
+@media (max-width: 976px) {
+  .container {
+    padding: 0 7%;
+  }
+}
+
 @media (max-width: 760px) {
   .container {
     padding: 0 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
   }
 }

@@ -24,3 +24,30 @@
   box-shadow: 0 0;
   transform: translate(4px, 4px);
 }
+
+@media (max-width: 1212px) {
+  .button__large {
+    font-size: 32px;
+    padding: 14px 32px;
+  }
+}
+
+@media (max-width: 976px) {
+  .button__large {
+    font-size: 28px;
+    padding: 12px 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .button__large {
+    font-size: 24px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .button__large {
+    font-size: 20px;
+  }
+}

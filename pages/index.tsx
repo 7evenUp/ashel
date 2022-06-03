@@ -18,7 +18,9 @@ const Home: NextPage = () => {
           <div className={styles.welcome_text}>
             <h2>ты зашёл сюда, чтобы получше меня узнать? Ну тогда я не против</h2>
             <div className={styles.cta}>
-              <Image src="/arrow.svg" alt="Arrow image" width={178} height={106} />
+              <div className={styles.cta_image}>
+                <Image src="/arrow.svg" alt="Arrow image" width={178} height={106} />
+              </div>
               <Button title="Тыкни сюда" large onClick={() => alert("Ты лох")} />
             </div>
           </div>
