@@ -1,4 +1,4 @@
-import styles from './blog.module.css'
+import styles from './Blog.module.css'
 
 const Blog = () => {
   return (
