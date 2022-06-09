@@ -38,6 +38,16 @@ const Header = () => {
                 <a>Контакты</a>
               </Link>
             </li>
+            <li className={router.pathname === "/login" ? styles.burger_link__active : ""}>
+              <Link href={'login'}>
+                <a>Login</a>
+              </Link>
+            </li>
+            <li className={router.pathname === "/admin" ? styles.burger_link__active : ""}>
+              <Link href={'admin'}>
+                <a>Admin</a>
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
@@ -63,6 +73,16 @@ const Header = () => {
               <a>Контакты</a>
             </Link>
           </li>
+          <li className={router.pathname === "/login" ? styles.link__active : ""}>
+              <Link href={'login'}>
+                <a>Login</a>
+              </Link>
+            </li>
+            <li className={router.pathname === "/admin" ? styles.link__active : ""}>
+              <Link href={'admin'}>
+                <a>Admin</a>
+              </Link>
+            </li>
         </ul>
       </nav>
     </header>
