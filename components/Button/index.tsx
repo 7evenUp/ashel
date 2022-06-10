@@ -2,11 +2,11 @@ import styles from './Button.module.css'
 
 type ButtonProps = {
   title: string
-  onClick: () => void
+  onClick?: () => void
   large?: boolean
 }
 
-const Button = ({title, large, onClick}: ButtonProps) => {
+const Button = ({title, onClick, large }: ButtonProps) => {
   return (
     <button
       onClick={onClick}
