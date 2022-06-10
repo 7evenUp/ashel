@@ -1,25 +1,44 @@
+import { withSessionSsr } from "../../lib/withSession";
+import Button from '../../components/Button'
+import { UserType } from '../api/user'
 import styles from './Admin.module.css'
 
-const Admin = () => {
+type AdminProps = {
+  user: UserType
+}
+
+const Admin = ({ user }: AdminProps) => {
   return (
     <main className={styles.main}>
       This is an Admin Page
+
+      <Button title='Logout' onClick={async () => {
+        const res = await fetch('api/logout', { method: 'POST'})
+        console.log(res)
+      }} />
     </main>
   )
 }
 
 export default Admin
 
-// You should use getServerSideProps when:
-// - Only if you need to pre-render a page whose data must be fetched at request time
-import { GetServerSideProps } from 'next'
+export const getServerSideProps = withSessionSsr(
+  async function getServerSideProps({ req }) {
+    const user = req.session.user
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  // const { data } = await  // your fetch function here 
-  console.log("Cookies", ctx.req.cookies)
-  return {
-    props: {
-      
+    if (user) {
+      return {
+        props: {
+          user: req.session.user
+        }
+      }
+    } else {
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false
+        }
+      }
     }
-  }
-}
+  },
+)

@@ -6,7 +6,6 @@ import Button from '../components/Button'
 import Card from '../components/Card'
 import Footer from '../components/Footer'
 import styles from '../styles/Home.module.css'
-import { parse, serialize } from 'cookie'
 
 const Home: NextPage = () => {
   return (
@@ -61,17 +60,3 @@ const Home: NextPage = () => {
 }
 
 export default Home
-
-// You should use getServerSideProps when:
-// - Only if you need to pre-render a page whose data must be fetched at request time
-import { GetServerSideProps } from 'next'
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  ctx.res.setHeader('Set-Cookie', serialize('myCookie', '123'))
-
-  return {
-    props: {
-      
-    }
-  }
-}

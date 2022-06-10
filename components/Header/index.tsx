@@ -1,10 +1,12 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useState } from "react"
+import useUser from "../../lib/useUser"
 import styles from './Header.module.css'
 
 const Header = () => {
   const [burgerClicked, setBurgerClicked] = useState(false)
+  const { user, mutateUser } = useUser()
   const router = useRouter()
   
   return (
@@ -74,15 +76,18 @@ const Header = () => {
             </Link>
           </li>
           <li className={router.pathname === "/login" ? styles.link__active : ""}>
-              <Link href={'login'}>
-                <a>Login</a>
-              </Link>
-            </li>
+            <Link href={'login'}>
+              <a>Login</a>
+            </Link>
+          </li>
+          
+          {user?.isLoggedIn && (
             <li className={router.pathname === "/admin" ? styles.link__active : ""}>
               <Link href={'admin'}>
                 <a>Admin</a>
               </Link>
             </li>
+          )}
         </ul>
       </nav>
     </header>
