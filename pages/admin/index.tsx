@@ -1,20 +1,30 @@
-import { withSessionSsr } from "../../lib/withSession";
+import { useRouter } from 'next/router'
+import { withSessionSsr } from "../../lib/withSession"
 import Button from '../../components/Button'
 import { UserType } from '../api/user'
 import styles from './Admin.module.css'
+import useUser from "../../lib/useUser"
+import fetchJson from "../../lib/fetchJson"
+
 
 type AdminProps = {
   user: UserType
 }
 
 const Admin = ({ user }: AdminProps) => {
+  const { mutateUser } = useUser()
+  const router = useRouter()
+  
   return (
     <main className={styles.main}>
       This is an Admin Page
 
       <Button title='Logout' onClick={async () => {
-        const res = await fetch('api/logout', { method: 'POST'})
-        console.log(res)
+        mutateUser(
+          await fetchJson('/api/logout', { method: 'POST' }),
+          false
+        )
+        router.push('/login')
       }} />
     </main>
   )

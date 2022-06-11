@@ -14,9 +14,7 @@ const Header = () => {
       <h1 className={styles.heading}>ASHEL</h1>
       <div
         className={`${styles.burger_nav} ${burgerClicked ? styles.burger_nav__active : ''}`}
-        onClick={() => {
-          setBurgerClicked(!burgerClicked)
-        }}>
+        onClick={() => { setBurgerClicked(!burgerClicked) }}>
         <button type="button" className={styles.burger_btn}></button>
         <nav className={styles.burger_menu}>
           <ul>
@@ -40,16 +38,13 @@ const Header = () => {
                 <a>Контакты</a>
               </Link>
             </li>
-            <li className={router.pathname === "/login" ? styles.burger_link__active : ""}>
-              <Link href={'login'}>
-                <a>Login</a>
-              </Link>
-            </li>
-            <li className={router.pathname === "/admin" ? styles.burger_link__active : ""}>
-              <Link href={'admin'}>
-                <a>Admin</a>
-              </Link>
-            </li>
+            {user?.isLoggedIn && (
+              <li className={router.pathname === "/admin" ? styles.burger_link__active : ""}>
+                <Link href={'admin'}>
+                  <a>Admin</a>
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
       </div>
@@ -73,11 +68,6 @@ const Header = () => {
           <li className={router.pathname === "/contacts" ? styles.link__active : ""}>
             <Link href={'contacts'}>
               <a>Контакты</a>
-            </Link>
-          </li>
-          <li className={router.pathname === "/login" ? styles.link__active : ""}>
-            <Link href={'login'}>
-              <a>Login</a>
             </Link>
           </li>
           

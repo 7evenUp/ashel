@@ -1,8 +1,17 @@
-import { FormEvent } from 'react'
+import { FormEvent, useState } from 'react'
 import Button from '../../components/Button'
+import fetchJson, { FetchError } from '../../lib/fetchJson'
+import useUser from '../../lib/useUser'
 import styles from './Login.module.css'
 
 const Login = () => {
+  const { mutateUser } = useUser({
+    redirectTo: '/admin',
+    redirectIfFound: true
+  })
+
+  const [errorMsg, setErrorMsg] = useState('')
+
   const SubmitHandler = async (evt: FormEvent) => {
     evt.preventDefault()
 
@@ -11,18 +20,21 @@ const Login = () => {
       password: evt.currentTarget.password.value
     }
 
-    const res = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    })
-
-    const json = await res.json()
-
-    console.log("RESPOND FROM SERVER: ", json)
-
-    console.log('FORM BODY:')
-    console.log(body)
+    try {
+      mutateUser(
+        await fetchJson('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        })
+      )
+    } catch (error) {
+      if (error instanceof FetchError) {
+        setErrorMsg(error.data.message)
+      } else {
+        setErrorMsg('An unexpected error happened: ' + error)
+      }
+    }
   }
 
   return (
@@ -34,6 +46,8 @@ const Login = () => {
 
         <label htmlFor='password'>Password</label>
         <input id='password' type='password' name='password' required />
+
+        {errorMsg && <p>Error: {errorMsg}</p>}
 
         <Button title='Login'/>
       </form>
