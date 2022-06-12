@@ -15,7 +15,9 @@ const Admin = ({ user }: AdminProps) => {
   const router = useRouter()
   
   return (
-    <main className={styles.main}>
+    <main
+      // className={styles.main}
+      >
       This is an Admin Page
 
       <Button title='Logout' onClick={async () => {

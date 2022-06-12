@@ -39,7 +39,8 @@ const Login = () => {
   }
 
   return (
-    <main className={styles.main}>
+    // <main className={styles.main}>
+    <main>
       <div>
         <h2>Вау, ты нашёл секретную страницу</h2>
         <p>
@@ -48,7 +49,10 @@ const Login = () => {
         </p>
       </div>
       
-      <form onSubmit={SubmitHandler} className={styles.form_container}>
+      <form
+        onSubmit={SubmitHandler}
+        // className={styles.form_container}>
+        >
         Login form
 
         <TextInput 
