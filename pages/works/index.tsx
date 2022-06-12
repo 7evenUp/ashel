@@ -1,4 +1,4 @@
-import styles from './Works.module.css'
+import styles from './works.module.css'
 
 const Works = () => {
   return (

@@ -1,4 +1,4 @@
-import styles from './Gallery.module.css'
+import styles from './gallery.module.css'
 
 const Gallery = () => {
   return (

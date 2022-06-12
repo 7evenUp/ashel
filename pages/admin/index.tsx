@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { withSessionSsr } from "../../lib/withSession"
 import Button from '../../components/Button'
 import { UserType } from '../api/user'
-import styles from './Admin.module.css'
+import styles from './admin.module.css'
 import useUser from "../../lib/useUser"
 import fetchJson from "../../lib/fetchJson"
 
