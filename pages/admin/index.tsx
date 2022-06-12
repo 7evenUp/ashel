@@ -6,7 +6,6 @@ import styles from './Admin.module.css'
 import useUser from "../../lib/useUser"
 import fetchJson from "../../lib/fetchJson"
 
-
 type AdminProps = {
   user: UserType
 }

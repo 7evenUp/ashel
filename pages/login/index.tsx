@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react'
 import Button from '../../components/Button'
+import TextInput from '../../components/Input/TextInput'
 import fetchJson, { FetchError } from '../../lib/fetchJson'
 import useUser from '../../lib/useUser'
 import styles from './Login.module.css'
@@ -12,7 +13,7 @@ const Login = () => {
 
   const [errorMsg, setErrorMsg] = useState('')
 
-  const SubmitHandler = async (evt: FormEvent) => {
+  const SubmitHandler = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault()
 
     const body = {
@@ -39,13 +40,26 @@ const Login = () => {
 
   return (
     <main className={styles.main}>
-      Login form
+      <div>
+        <h2>Вау, ты нашёл секретную страницу</h2>
+        <p>
+          С помощью данной формы я захожу к себе в админ-панель,
+          где добавляю и редактирую свои посты
+        </p>
+      </div>
+      
       <form onSubmit={SubmitHandler} className={styles.form_container}>
-        <label htmlFor='username'>Username</label>
-        <input id='username' type='text' name='username' required />
+        Login form
 
-        <label htmlFor='password'>Password</label>
-        <input id='password' type='password' name='password' required />
+        <TextInput 
+          name='username'
+          typeInput='text'
+          required />
+
+        <TextInput 
+          name='password'
+          typeInput='password'
+          required />
 
         {errorMsg && <p>Error: {errorMsg}</p>}
 

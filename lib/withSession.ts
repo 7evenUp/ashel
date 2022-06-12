@@ -7,7 +7,7 @@ import {
 import { UserType } from "../pages/api/user";
 
 const sessionOptions = {
-  password: "complex_password_at_least_32_characters_long",
+  password: process.env.SECRET_COOKIE_PASSWORD || 'complex_password_at_least_32_characters_long',
   cookieName: "session",
   // secure: true should be used in production (HTTPS) but can't be used in development (HTTP)
   cookieOptions: {
