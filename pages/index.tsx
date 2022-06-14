@@ -38,7 +38,7 @@ const Home: NextPage = () => {
           </div>
           <span className={styles.separator} />
           <div className={styles.bio}>
-            <Card title="Программист" accentColor="red">
+            <Card title="Программист" accentColor="red" width={296}>
               <p>
                 Я пишу клиентскую часть на React, серверную на Node.js. Могу немного Python. Для разработки мобильных приложений использую React Native. Также практикую себя в UI/UX дизайне
               </p>
@@ -46,7 +46,7 @@ const Home: NextPage = () => {
                 <a>Посмотреть работы</a>
               </Link>
             </Card>
-            <Card title='Футболист' accentColor="green">
+            <Card title='Футболист' accentColor="green" width={296}>
               <p>
                 Играю в футбол с пелёнок. В 2017 переехал в Санкт-Петербург и начал играть в футбол 11х11. В данный момент времени играю в ПФЛ (Пивной футбольной лиге). Очень много тренируюсь и пропагандирую ЗОЖ
               </p>
