@@ -11,7 +11,10 @@ const Header = () => {
   
   return (
     <header className={styles.container}>
-      <h1 className={styles.heading}>ASHEL</h1>
+      <Link href={'/'}>
+        <h1 className={styles.heading}><a>ASHEL</a></h1>
+      </Link>
+      
       <div
         className={`${styles.burger_nav} ${burgerClicked ? styles.burger_nav__active : ''}`}
         onClick={() => { setBurgerClicked(!burgerClicked) }}>

@@ -12,6 +12,7 @@
   padding: 12px 90px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  cursor: pointer;
 }
 
 .navigation {
@@ -28,6 +29,11 @@
 
 .list li {
   font-size: 24px;
+  transition: all 0.1s ease-in;
+}
+
+.list li:hover {
+  color: #8F7F63;
 }
 
 .link__active {
