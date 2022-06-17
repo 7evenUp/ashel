@@ -4,10 +4,9 @@ import Button from '../../components/Button'
 import { UserType } from '../api/user'
 import useUser from "../../lib/useUser"
 import fetchJson from "../../lib/fetchJson"
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
-import { doc, addDoc, setDoc } from "firebase/firestore"
-import { storage, db } from '../../firebase/config'
 import TextInput from '../../components/Input/TextInput'
+import { addDocument } from '../../firebase/useGallery'
+import { useState } from 'react'
 // import styles from './admin.module.css'
 
 type AdminProps = {
@@ -15,6 +14,9 @@ type AdminProps = {
 }
 
 const Admin = ({ user }: AdminProps) => {
+  const [loading, setLoading] = useState(false)
+  const [docAddedSuccess, setDocAddedSuccess] = useState('')
+  const [docAddedError, setDocAddedError] = useState('')
   const { mutateUser } = useUser()
   const router = useRouter()
   
@@ -35,25 +37,27 @@ const Admin = ({ user }: AdminProps) => {
       <form onSubmit={async (evt) => {
         evt.preventDefault()
         
-        const file = evt.currentTarget.file.files[0]
+        
+        const file: File = evt.currentTarget.file.files[0]
         const title = evt.currentTarget.qtitle.value
 
-        const storageRef = ref(storage, 'some-child')
+        console.log(file)
+        setLoading(true)
+        const { resultId, error } = await addDocument(file, title)
+        setLoading(false)
 
-        const snapshot = await uploadBytes(storageRef, file)
-        console.log('File uploaded')
-        const URL = await getDownloadURL(snapshot.ref)
-        console.log("URL: ", URL)
-        const docs = await setDoc(doc(db, 'gallery'), {
-          title: title,
-          imgSrc: URL,
-          date: new Date(Date.now())
-        })
+        if (resultId) setDocAddedSuccess(resultId)
+        else if (error) setDocAddedError(error)
       }}>
         Gallery form
         <TextInput name="qtitle" typeInput='text' required />
         <input type="file" name="file" />
         <button>Submit</button>
+
+        {loading === true && <span>Uploading...</span>}
+
+        {docAddedSuccess && <h1 style={{color: 'green'}}>Success with new ID: {docAddedSuccess}</h1>}
+        {docAddedError && <h1 style={{color: 'red'}}>Error happend: {docAddedError}</h1>}
       </form>
     </main>
   )
