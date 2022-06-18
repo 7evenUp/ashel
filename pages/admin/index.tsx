@@ -50,8 +50,8 @@ const Admin = ({ user }: AdminProps) => {
         else if (error) setDocAddedError(error)
       }}>
         Gallery form
-        <TextInput name="qtitle" typeInput='text' required />
-        <input type="file" name="file" />
+        <TextInput name="qtitle" typeInput='text' required max={18} min={1} />
+        <input type="file" name="file" required />
         <button>Submit</button>
 
         {loading === true && <span>Uploading...</span>}

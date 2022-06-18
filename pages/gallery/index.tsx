@@ -13,10 +13,10 @@ const Gallery = ({data}: { data: Array<GalleryDocType>}) => {
             key={index}
             title={el.title}
             date={el.date}
-            accentColor='red' >
+            accentColor={index % 3 === 0 ? 'red' : index % 2 === 0 ? 'cyan' : 'green'} >
             <Image
-                width={400}
-                height={400}
+                width={350}
+                height={350}
                 objectFit="cover"
                 src={el.imgSrc}
                 alt="Party" />
