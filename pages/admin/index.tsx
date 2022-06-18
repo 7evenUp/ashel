@@ -42,12 +42,12 @@ const Admin = ({ user }: AdminProps) => {
         const title = evt.currentTarget.qtitle.value
 
         console.log(file)
-        setLoading(true)
-        const { resultId, error } = await addDocument(file, title)
-        setLoading(false)
+        // setLoading(true)
+        // const { resultId, error } = await addDocument(file, title)
+        // setLoading(false)
 
-        if (resultId) setDocAddedSuccess(resultId)
-        else if (error) setDocAddedError(error)
+        // if (resultId) setDocAddedSuccess(resultId)
+        // else if (error) setDocAddedError(error)
       }}>
         Gallery form
         <TextInput name="qtitle" typeInput='text' required max={18} min={1} />
