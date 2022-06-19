@@ -5,7 +5,6 @@ import Button from '../../components/Button'
 import { UserType } from '../api/user'
 import useUser from "../../lib/useUser"
 import fetchJson from "../../lib/fetchJson"
-import styles from './admin.module.css'
 
 type AdminProps = {
   user: UserType
@@ -16,10 +15,26 @@ const Admin = ({ user }: AdminProps) => {
   const router = useRouter()
   
   return (
-    <main className={styles.main}>
-      <header className={styles.header}>
+    <main style={{
+      padding: '4rem 0',
+      flex: '1 1',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    }}>
+      <header style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+      }}>
         This is an Admin Page
-        <ul className={styles.list}>
+        <ul style={{
+          listStyle: 'none',
+          display: 'flex',
+          gap: 16,
+          fontSize: 20
+        }}>
           <li><Link href="admin/blog"><a>Блог</a></Link></li>
           <li><Link href="admin/works"><a>Работы</a></Link></li>
           <li><Link href="admin/gallery"><a>Галерея</a></Link></li>
