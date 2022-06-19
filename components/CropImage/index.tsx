@@ -94,7 +94,7 @@ const CropImage = ({cb}: {cb: Dispatch<SetStateAction<Blob | undefined>>}) => {
                 setBlobReady(true)
                 cb(blob)
               }
-            }, 'image/jpeg', 0.95)
+            }, 'image/jpeg')
           }}
           aspect={aspect}
         >

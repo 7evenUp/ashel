@@ -5,12 +5,16 @@ import Button from '../../components/Button'
 import { UserType } from '../api/user'
 import useUser from "../../lib/useUser"
 import fetchJson from "../../lib/fetchJson"
+import { useMediaQuery } from 'react-responsive'
 
 type AdminProps = {
   user: UserType
 }
 
 const Admin = ({ user }: AdminProps) => {
+  const isMobile = useMediaQuery({
+    query: '(min-width: 665px)'
+  })
   const { mutateUser } = useUser()
   const router = useRouter()
   
@@ -24,6 +28,8 @@ const Admin = ({ user }: AdminProps) => {
     }}>
       <header style={{
         display: 'flex',
+        flexDirection: !isMobile ? 'column' : 'row',
+        gap: 20,
         justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
