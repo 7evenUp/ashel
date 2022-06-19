@@ -2,13 +2,13 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { addDoc, collection, getDocs } from "firebase/firestore"
 import { storage, db } from './config'
 
-export const addDocument = async (file: File, title: string) => {
+export const addDocument = async (blob: Blob, title: string) => {
   const date = new Date(Date.now())
 
-  const storageRef = ref(storage, `${file.name}_${date.toLocaleTimeString()}`)
+  const storageRef = ref(storage, `${title}_${date.toLocaleTimeString()}`)
 
   try {
-    const snapshot = await uploadBytes(storageRef, file)
+    const snapshot = await uploadBytes(storageRef, blob)
     const URL = await getDownloadURL(snapshot.ref)
     const result = await addDoc(collection(db, 'gallery'), {
       title: title,

@@ -7,6 +7,8 @@ import fetchJson from "../../lib/fetchJson"
 import TextInput from '../../components/Input/TextInput'
 import { addDocument } from '../../firebase/useGallery'
 import { useState } from 'react'
+import CropImage from '../../components/CropImage'
+
 // import styles from './admin.module.css'
 
 type AdminProps = {
@@ -15,6 +17,7 @@ type AdminProps = {
 
 const Admin = ({ user }: AdminProps) => {
   const [loading, setLoading] = useState(false)
+  const [blob, setBlob] = useState<Blob>()
   const [docAddedSuccess, setDocAddedSuccess] = useState('')
   const [docAddedError, setDocAddedError] = useState('')
   const { mutateUser } = useUser()
@@ -37,21 +40,20 @@ const Admin = ({ user }: AdminProps) => {
       <form onSubmit={async (evt) => {
         evt.preventDefault()
         
+        if (blob) {
+          const title = evt.currentTarget.qtitle.value
         
-        const file: File = evt.currentTarget.file.files[0]
-        const title = evt.currentTarget.qtitle.value
+          setLoading(true)
+          const { resultId, error } = await addDocument(blob, title)
+          setLoading(false)
 
-        console.log(file)
-        // setLoading(true)
-        // const { resultId, error } = await addDocument(file, title)
-        // setLoading(false)
-
-        // if (resultId) setDocAddedSuccess(resultId)
-        // else if (error) setDocAddedError(error)
+          if (resultId) setDocAddedSuccess(resultId)
+          else if (error) setDocAddedError(error)
+        } else setDocAddedError('Blob is undefined') 
       }}>
         Gallery form
         <TextInput name="qtitle" typeInput='text' required max={18} min={1} />
-        <input type="file" name="file" required />
+        <CropImage cb={setBlob} />
         <button>Submit</button>
 
         {loading === true && <span>Uploading...</span>}
@@ -59,6 +61,7 @@ const Admin = ({ user }: AdminProps) => {
         {docAddedSuccess && <h1 style={{color: 'green'}}>Success with new ID: {docAddedSuccess}</h1>}
         {docAddedError && <h1 style={{color: 'red'}}>Error happend: {docAddedError}</h1>}
       </form>
+      
     </main>
   )
 }
