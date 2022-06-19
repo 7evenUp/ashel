@@ -54,7 +54,7 @@ const Header = () => {
       <nav className={styles.navigation}>
         <ul className={styles.list}>
           <li className={router.pathname === "/blog" ? styles.link__active : ""}>
-            <Link href={'blog'}>
+            <Link href={'./blog'}>
               <a>Блог</a>
             </Link>
           </li>

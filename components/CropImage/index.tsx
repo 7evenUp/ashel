@@ -78,7 +78,7 @@ const CropImage = ({cb}: {cb: Dispatch<SetStateAction<Blob | undefined>>}) => {
 
   return (
     <>
-      <input type="file" accept="image/*" onChange={onSelectFile} />
+      <input type="file" accept="image/*" onChange={onSelectFile} required />
       {Boolean(imgSrc) && (
         <ReactCrop
           style={{width: 400}}

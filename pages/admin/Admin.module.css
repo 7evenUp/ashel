@@ -4,5 +4,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+}
+
+.list li {
+  font-size: 20px;
+  transition: all 0.1s ease-in;
+}
+
+.list li:hover {
+  color: #8F7F63;
 }
