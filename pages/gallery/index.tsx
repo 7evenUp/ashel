@@ -15,7 +15,6 @@ const Gallery = ({data}: { data: Array<GalleryDocType>}) => {
             date={el.date}
             accentColor={index % 3 === 0 ? 'red' : index % 2 === 0 ? 'cyan' : 'green'} >
             <Image
-                // unoptimized={true}
                 layout="responsive"
                 width={350}
                 height={350}

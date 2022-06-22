@@ -6,7 +6,7 @@ import styles from './Header.module.css'
 
 const Header = () => {
   const [burgerClicked, setBurgerClicked] = useState(false)
-  const { user, mutateUser } = useUser()
+  const { user } = useUser()
   const router = useRouter()
   
   return (
@@ -22,28 +22,28 @@ const Header = () => {
         <nav className={styles.burger_menu}>
           <ul>
             <li className={router.pathname === "/blog" ? styles.burger_link__active : ""}>
-              <Link href={'blog'}>
+              <Link href={'/blog'}>
                 <a>Блог</a>
               </Link>
             </li>
             <li className={router.pathname === "/works" ? styles.burger_link__active : ""}>
-              <Link href={'works'}>
+              <Link href={'/works'}>
                 <a>Работы</a>
               </Link>
             </li>
             <li className={router.pathname === "/gallery" ? styles.burger_link__active : ""}>
-              <Link href={'gallery'}>
+              <Link href={'/gallery'}>
                 <a>Галерея</a>
               </Link>
             </li>
             <li className={router.pathname === "/contacts" ? styles.burger_link__active : ""}>
-              <Link href={'contacts'}>
+              <Link href={'/contacts'}>
                 <a>Контакты</a>
               </Link>
             </li>
             {user?.isLoggedIn && (
               <li className={router.pathname === "/admin" ? styles.burger_link__active : ""}>
-                <Link href={'admin'}>
+                <Link href={'/admin'}>
                   <a>Admin</a>
                 </Link>
               </li>
@@ -54,29 +54,29 @@ const Header = () => {
       <nav className={styles.navigation}>
         <ul className={styles.list}>
           <li className={router.pathname === "/blog" ? styles.link__active : ""}>
-            <Link href={'./blog'}>
+            <Link href={'/blog'} >
               <a>Блог</a>
             </Link>
           </li>
           <li className={router.pathname === "/works" ? styles.link__active : ""}>
-            <Link href={'works'}>
+            <Link href={'/works'}>
               <a>Работы</a>
             </Link>
           </li>
           <li className={router.pathname === "/gallery" ? styles.link__active : ""}>
-            <Link href={'gallery'}>
+            <Link href={'/gallery'}>
               <a>Галерея</a>
             </Link>
           </li>
           <li className={router.pathname === "/contacts" ? styles.link__active : ""}>
-            <Link href={'contacts'}>
+            <Link href={'/contacts'}>
               <a>Контакты</a>
             </Link>
           </li>
           
           {user?.isLoggedIn && (
             <li className={router.pathname === "/admin" ? styles.link__active : ""}>
-              <Link href={'admin'}>
+              <Link href={'/admin'}>
                 <a>Admin</a>
               </Link>
             </li>
