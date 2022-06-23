@@ -3,7 +3,6 @@ import Button from '../../components/Button'
 import TextInput from '../../components/Input/TextInput'
 import fetchJson, { FetchError } from '../../lib/fetchJson'
 import useUser from '../../lib/useUser'
-// import styles from './login.module.css'
 
 const Login = () => {
   const { mutateUser } = useUser({
@@ -39,22 +38,42 @@ const Login = () => {
   }
 
   return (
-    // <main className={styles.main}>
-    <main>
-      <div>
+    <main style={{
+      padding: '4rem 0',
+      flex: '1 1',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    }}>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        minWidth: 300,
+        maxWidth: 450,
+        gap: 32,
+        fontSize: 20
+      }}>
         <h2>Вау, ты нашёл секретную страницу</h2>
         <p>
           С помощью данной формы я захожу к себе в админ-панель,
-          где добавляю и редактирую свои посты
+          где добавляю и редактирую свои посты.
+          Если хочешь зайти посмотреть, то вот:
         </p>
+        <span>Username: <code>RootUser</code></span>
+        <span>Password: <code>RootUserPassword</code></span>
       </div>
       
       <form
         onSubmit={SubmitHandler}
-        // className={styles.form_container}>
+        style={{
+          marginTop: '2rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 16,
+          minWidth: 300,
+          maxWidth: 400
+        }}
         >
-        Login form
-
         <TextInput 
           name='username'
           typeInput='text'
@@ -65,9 +84,19 @@ const Login = () => {
           typeInput='password'
           required />
 
-        {errorMsg && <p>Error: {errorMsg}</p>}
+        {errorMsg && <p style={{
+          backgroundColor: '#F25E9C',
+          color: 'white',
+          padding: '8px 16px',
+          fontSize: 20,
+          borderRadius: 5
+        }}>Error: {errorMsg}</p>}
 
-        <Button title='Login'/>
+        <div style={{maxWidth: 300}}>
+          <Button title='Login' />
+        </div>
+
+        
       </form>
     </main>
   )

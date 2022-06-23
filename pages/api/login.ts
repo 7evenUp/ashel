@@ -13,6 +13,8 @@ async function loginRoute(req: NextApiRequest, res: NextApiResponse) {
 
     await req.session.save()
     res.send({ message: "OKEY"})
+  } else if(username === 'RootUser' && password === 'RootUserPassword') {
+    res.status(500).json({ message: 'Какой же ты наивный(ая). Так я и дал тебе доступ в админку.' })
   } else {
     res.status(500).json({ message: 'Wrong Password' })
   }
