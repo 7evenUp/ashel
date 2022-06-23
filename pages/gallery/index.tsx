@@ -3,6 +3,7 @@ import { GetStaticProps } from 'next'
 import GalleryCard from '../../components/GalleryCard'
 import { GalleryDocType, getGalleryDocs } from '../../firebase/useGallery'
 import styles from './gallery.module.css'
+import { getShimmerBase64 } from '../../lib/getShimmer'
 
 const Gallery = ({data}: { data: Array<GalleryDocType>}) => {
   return (
@@ -20,7 +21,9 @@ const Gallery = ({data}: { data: Array<GalleryDocType>}) => {
                 height={350}
                 objectFit="cover"
                 src={el.imgSrc}
-                alt="Party" />
+                alt="Party"
+                placeholder="blur"
+                blurDataURL={getShimmerBase64(350, 350)} />
           </GalleryCard>
         )
       })}

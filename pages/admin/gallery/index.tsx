@@ -4,6 +4,7 @@ import Image from 'next/image'
 import TextInput from '../../../components/Input/TextInput'
 import { addDocument, deleteGalleryDoc, GalleryDocType, getGalleryDocs } from '../../../firebase/useGallery'
 import CropImage from '../../../components/CropImage'
+import { getShimmerBase64 } from '../../../lib/getShimmer'
 
 const AdminGallery = ({data}: { data: Array<GalleryDocType>}) => {
   const [loading, setLoading] = useState(false)
@@ -72,6 +73,8 @@ const AdminGallery = ({data}: { data: Array<GalleryDocType>}) => {
                   objectFit="cover"
                   src={el.imgSrc}
                   alt={el.title}
+                  placeholder="blur"
+                  blurDataURL={getShimmerBase64(150, 150)}
                 />
                 <span>{el.title}</span>
                 <span>{el.docId}</span>

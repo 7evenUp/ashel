@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { getShimmerBase64 } from '../../lib/getShimmer'
 import styles from './WorkCard.module.css'
 
 type WorkCardProps = {
@@ -56,6 +57,8 @@ const WorkCard = ({
             src={imgSrc}
             alt={subtitle}
             layout='fill'
+            placeholder="blur"
+            blurDataURL={getShimmerBase64(150, 150)}
           />
         </div>
       </div>
