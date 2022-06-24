@@ -12,7 +12,7 @@ export type GalleryDocType = {
 
 export const addDocument = async (blob: Blob, title: string) => {
   const date = new Date(Date.now())
-  const storageRefName = `${title}_${date.toLocaleTimeString()}`
+  const storageRefName = `images/${title}_${date.toLocaleTimeString()}`
 
   const storageRef = ref(storage, storageRefName)
 
