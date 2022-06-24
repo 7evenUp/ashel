@@ -2,13 +2,14 @@ import Link from 'next/link'
 import styles from './BlogCard.module.css'
 
 type BlogCardProps = {
+  id: string
   title: string
   date: string
   description: string
   keyWords: Array<string>
 }
 
-const BlogCard = ({ title, date, description, keyWords }: BlogCardProps) => {
+const BlogCard = ({ id, title, date, description, keyWords }: BlogCardProps) => {
   return (
     <article className={styles.container}>
       <header className={styles.header}>
@@ -25,7 +26,7 @@ const BlogCard = ({ title, date, description, keyWords }: BlogCardProps) => {
         <div className={styles.key_words}>
           {keyWords.map((el, index) => <span key={index}>{el}</span>)}
         </div>
-        <Link href="#" className={styles.link}>
+        <Link href={`/blog/${id}`} className={styles.link}>
           <a>Читать далее</a>
         </Link>
       </main>
