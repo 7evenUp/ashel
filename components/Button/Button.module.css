@@ -1,9 +1,9 @@
 .button {
   cursor: pointer;
   font-family: 'Montserrat', Roboto, Helvetica Neue, sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
-  padding: 18px 42px;
+  padding: 16px 32px;
   background-color: #B1F25E;
   border-radius: 5px;
   border: 3px solid black;
