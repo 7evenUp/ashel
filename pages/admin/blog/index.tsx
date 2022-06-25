@@ -52,6 +52,7 @@ const AdminBlog = () => {
         gap: 32
       }}>
         <form
+          // @ts-ignore
           ref={formRef}
           style={{
             display: 'flex',
