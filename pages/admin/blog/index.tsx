@@ -143,7 +143,9 @@ const AdminBlog = () => {
                     setEditingPostId(doc.id)
                     setIsPostEditing(true)
                     setKeyWords(doc.data().keyWords)
+                    // @ts-ignore
                     formRef.current.postTitle.value = doc.data().title
+                    // @ts-ignore
                     formRef.current.description.value = doc.data().description
                     setEditorValue(doc.data().htmlData)
                   }}
