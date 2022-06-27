@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { Suspense, useRef, useState } from "react"
 import Button from "../../../components/Button"
 import TextInput from "../../../components/Input/TextInput"
 import KeyWordsForm from "../../../components/KeyWordsForm"
@@ -6,9 +6,11 @@ import { addDoc, collection, doc, updateDoc } from "firebase/firestore"
 import { db } from '../../../firebase/config'
 
 import { useCollection } from 'react-firebase-hooks/firestore';
-import ReactQuill from "react-quill"
-import 'react-quill/dist/quill.bubble.css'
 import { deleteBlogDoc } from "../../../firebase/useBlog"
+import dynamic from "next/dynamic"
+const MyReactQuill = dynamic(() => import('../../../components/MyReactQuill'), {
+  ssr: false,
+})
 
 
 const AdminBlog = () => {
@@ -111,18 +113,14 @@ const AdminBlog = () => {
 
           <Button title={isPostEditing ? "Изменить пост" : "Создать пост"} />
         </form>
-        <ReactQuill
-          modules={modules}
-          formats={formats}
-          style={{
-            flex: 1,
-            borderLeft: '1px solid black'
-          }}
-          placeholder="Editor"
-          theme="bubble"
-          value={editorValue}
-          onChange={setEditorValue}
-        />
+        {/* <Suspense fallback={"Loading Editor..."}> */}
+          <MyReactQuill
+            modules={modules}
+            formats={formats}
+            editorValue={editorValue}
+            setEditorValue={setEditorValue}
+            />
+        {/* </Suspense> */}
       </div>
 
       {error && <strong>Error: {JSON.stringify(error)}</strong>}
