@@ -1,0 +1,131 @@
+.container {
+  padding: 4rem 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+}
+
+.header h2 {
+  font-size: 40px;
+}
+
+.content blockquote {
+  margin-left: 48px;
+  position: relative;
+  color: #8F7F63;
+}
+
+.content blockquote::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  background-color: #8F7F63;
+  left: -16px;
+  top: 0;
+}
+
+.content h1 {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.content h2 {
+  font-size: 24px;
+}
+
+.content p {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.content ol, .content ul {
+  margin-left: 32px;
+}
+
+.content li {
+  margin: 2px;
+}
+
+.content a {
+  text-decoration: underline;
+  color: #5E76F2;
+  font-size: 18px;
+  font-weight: 700;
+  transition: all 0.15s ease-in;
+}
+
+.content a:hover,
+.content a:active,
+.content a:focus {
+  color: #5EF2E0;
+}
+
+@media (max-width: 480px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+  
+  .header h2 {
+    font-size: 28px;
+  }
+
+  .content {
+    padding: 0 6px;
+  }
+  
+  .content blockquote {
+    margin-left: 16px;
+    position: relative;
+    color: #8F7F63;
+  }
+  
+  .content blockquote::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    background-color: #8F7F63;
+    left: -16px;
+    top: 0;
+  }
+  
+  .content h1 {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+  
+  .content h2 {
+    font-size: 20px;
+  }
+  
+  .content p {
+    font-size: 16px;
+  }
+  
+  .content ol, .content ul {
+    margin-left: 32px;
+  }
+  
+  .content li {
+    margin: 2px;
+  }
+  
+  .content a {
+    text-decoration: underline;
+    color: #5E76F2;
+    font-size: 16px;
+    font-weight: 700;
+    transition: all 0.15s ease-in;
+  }
+}

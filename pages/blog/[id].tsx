@@ -2,18 +2,18 @@ import { getDocs, collection } from 'firebase/firestore'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { db } from '../../firebase/config'
 import { BlogDocType, getBlogDoc } from '../../firebase/useBlog'
+import styles from './id.module.css'
 
 const Post = ({data}: {data: BlogDocType}) => {
   return (
-    <article>
-      <h2>{data.title}</h2>
-      <p>{data.description}</p>
-      <span>{data.date}</span>
-      <br/>
-      <span>Content:</span>
-      <div dangerouslySetInnerHTML={{__html: data.htmlData}}>
-
-      </div>
+    <article className={styles.container}>
+      <header className={styles.header}>
+        <h2>{data.title}</h2>
+        <span>{data.date}</span>
+      </header>
+      <div
+        dangerouslySetInnerHTML={{__html: data.htmlData}}
+        className={styles.content} />
     </article>
   )
 }

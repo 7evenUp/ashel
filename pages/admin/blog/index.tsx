@@ -1,8 +1,8 @@
-import { Suspense, useRef, useState } from "react"
+import { FormEvent, Suspense, useRef, useState } from "react"
 import Button from "../../../components/Button"
 import TextInput from "../../../components/Input/TextInput"
 import KeyWordsForm from "../../../components/KeyWordsForm"
-import { addDoc, collection, doc, updateDoc } from "firebase/firestore"
+import { addDoc, collection, doc, DocumentData, QueryDocumentSnapshot, updateDoc } from "firebase/firestore"
 import { db } from '../../../firebase/config'
 
 import { useCollection } from 'react-firebase-hooks/firestore';
@@ -24,22 +24,40 @@ const AdminBlog = () => {
     snapshotListenOptions: { includeMetadataChanges: true}
   })
 
-  const modules = {
-    toolbar: [
-      [{ 'header': [1, 2, false] }],
-      ['bold', 'italic', 'underline','strike', 'blockquote'],
-      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-      ['link', 'image'],
-      ['clean']
-    ],
+  const onEditClickHandler = (doc: QueryDocumentSnapshot<DocumentData>) => {
+    setEditingPostId(doc.id)
+    setIsPostEditing(true)
+    setKeyWords(doc.data().keyWords)
+    // @ts-ignore
+    formRef.current.postTitle.value = doc.data().title
+    // @ts-ignore
+    formRef.current.description.value = doc.data().description
+    setEditorValue(doc.data().htmlData)
   }
 
-  const formats = [
-    'header',
-    'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet', 'indent',
-    'link', 'image'
-  ]
+  const onDeleteClickHandler = () => {
+
+  }
+
+  const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const resultObject = {
+      keyWords,
+      title: e.currentTarget.postTitle.value,
+      description: e.currentTarget.description.value,
+      date: new Date(Date.now()),
+      htmlData: editorValue
+    }
+
+    if (isPostEditing) {
+      const result = await updateDoc(doc(db, 'blog', editingPostId), resultObject)
+      setIsPostEditing(false)
+    } else {
+      const result = await addDoc(collection(db, 'blog'), resultObject)
+    }
+
+    setKeyWords([])
+  }
 
   return (
     <main style={{
@@ -62,25 +80,7 @@ const AdminBlog = () => {
             gap: 16,
             maxWidth: 300
           }}
-          onSubmit={async (e) => {
-            e.preventDefault()
-            const resultObject = {
-              keyWords,
-              title: e.currentTarget.postTitle.value,
-              description: e.currentTarget.description.value,
-              date: new Date(Date.now()),
-              htmlData: editorValue
-            }
-
-            if (isPostEditing) {
-              const result = await updateDoc(doc(db, 'blog', editingPostId), resultObject)
-              setIsPostEditing(false)
-            } else {
-              const result = await addDoc(collection(db, 'blog'), resultObject)
-            }
-
-            setKeyWords([])
-          }}>
+          onSubmit={onSubmitHandler}>
           <TextInput
             name="postTitle"
             typeInput="text"
@@ -102,9 +102,7 @@ const AdminBlog = () => {
                 borderRadius: 5,
                 height: 150
               }}
-              onChange={(e) => {
-                setDesc(e.currentTarget.value)
-              }}
+              onChange={(e) => setDesc(e.currentTarget.value)}
               name="description"
               required
               minLength={45}
@@ -115,8 +113,6 @@ const AdminBlog = () => {
         </form>
         {/* <Suspense fallback={"Loading Editor..."}> */}
           <MyReactQuill
-            modules={modules}
-            formats={formats}
             editorValue={editorValue}
             setEditorValue={setEditorValue}
             />
@@ -138,16 +134,7 @@ const AdminBlog = () => {
                   {JSON.stringify(doc.data())},{' '}
                 </span>
                 <button
-                  onClick={() => {
-                    setEditingPostId(doc.id)
-                    setIsPostEditing(true)
-                    setKeyWords(doc.data().keyWords)
-                    // @ts-ignore
-                    formRef.current.postTitle.value = doc.data().title
-                    // @ts-ignore
-                    formRef.current.description.value = doc.data().description
-                    setEditorValue(doc.data().htmlData)
-                  }}
+                  onClick={() => onEditClickHandler(doc)}
                   style={{
                     maxWidth: 70,
                     padding: 8,
