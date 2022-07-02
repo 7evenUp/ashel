@@ -1,10 +1,17 @@
 import { getDocs, collection } from 'firebase/firestore'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 import { db } from '../../firebase/config'
 import { BlogDocType, getBlogDoc } from '../../firebase/useBlog'
 import styles from './id.module.css'
 
 const Post = ({data}: {data: BlogDocType}) => {
+  const router = useRouter()
+
+  if (router.isFallback) {
+    return <div>Загружаю данные с сервера, потерпи...</div>
+  }
+  
   return (
     <article className={styles.container}>
       <header className={styles.header}>
@@ -35,7 +42,7 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 
   return {
     paths,
-    fallback: false
+    fallback: true
   }
 }
 
