@@ -15,6 +15,16 @@ const Post = ({data}: {data: BlogDocType}) => {
   return (
     <article className={styles.container}>
       <header className={styles.header}>
+        <button
+          style={{
+            background: 'url("/arrow_back.svg") no-repeat',
+            backgroundSize: 'cover',
+            width: 40,
+            height: 40,
+            cursor: 'pointer'
+          }}
+          type='button'
+          onClick={() => router.back()} />
         <h2>{data.title}</h2>
         <span>{data.date}</span>
       </header>

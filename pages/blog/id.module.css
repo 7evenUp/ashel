@@ -4,13 +4,19 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: flex-end;
+  gap: 32px;
   margin-bottom: 32px;
+  border-bottom: 1px solid black;
+  padding-bottom: 16px;
 }
 
 .header h2 {
   font-size: 40px;
+}
+
+.header span {
+  margin-left: auto;
 }
 
 .content blockquote {
@@ -37,6 +43,7 @@
 
 .content h2 {
   font-size: 24px;
+  margin-bottom: 8px;
 }
 
 .content p {
@@ -53,17 +60,36 @@
 }
 
 .content a {
-  text-decoration: underline;
   color: #5E76F2;
   font-size: 18px;
-  font-weight: 700;
   transition: all 0.15s ease-in;
+  position: relative;
+}
+
+.content a::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 1px;
+  top: 100%;
+  left: 50%;
+  background-color: #5E76F2;
+  transition: all 0.25s ease-in;
 }
 
 .content a:hover,
 .content a:active,
 .content a:focus {
   color: #5EF2E0;
+}
+
+.content a:hover::before,
+.content a:active::before,
+.content a:focus::before {
+  background-color: #5EF2E0;
+  width: 100%;
+  left: 0;
 }
 
 @media (max-width: 480px) {
@@ -77,6 +103,10 @@
   
   .header h2 {
     font-size: 28px;
+  }
+
+  .header span {
+    margin: 0;
   }
 
   .content {
