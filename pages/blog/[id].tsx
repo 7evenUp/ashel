@@ -1,5 +1,6 @@
 import { getDocs, collection } from 'firebase/firestore'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { db } from '../../firebase/config'
 import { BlogDocType, getBlogDoc } from '../../firebase/useBlog'
@@ -13,25 +14,35 @@ const Post = ({data}: {data: BlogDocType}) => {
   }
   
   return (
-    <article className={styles.container}>
-      <header className={styles.header}>
-        <button
-          style={{
-            background: 'url("/arrow_back.svg") no-repeat',
-            backgroundSize: 'cover',
-            width: 40,
-            height: 40,
-            cursor: 'pointer'
-          }}
-          type='button'
-          onClick={() => router.back()} />
-        <h2>{data.title}</h2>
-        <span>{data.date}</span>
-      </header>
-      <div
-        dangerouslySetInnerHTML={{__html: data.htmlData}}
-        className={styles.content} />
-    </article>
+    <>
+      <Head>
+        <title>{data.title} | My Site</title>
+        <meta
+          name="description"
+          content={data.description}
+          key="desc"
+        />
+      </Head>
+      <article className={styles.container}>
+        <header className={styles.header}>
+          <button
+            style={{
+              background: 'url("/arrow_back.svg") no-repeat',
+              backgroundSize: 'cover',
+              width: 40,
+              height: 40,
+              cursor: 'pointer'
+            }}
+            type='button'
+            onClick={() => router.back()} />
+          <h2>{data.title}</h2>
+          <span>{data.date}</span>
+        </header>
+        <div
+          dangerouslySetInnerHTML={{__html: data.htmlData}}
+          className={styles.content} />
+      </article>
+    </>
   )
 }
 
