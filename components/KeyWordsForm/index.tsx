@@ -18,15 +18,10 @@ const KeyWordsForm = ({keyWords, setKeyWords}: KeyWordsForm) => {
         }}
         onSubmit={(e) => {
           e.preventDefault()
-
           setKeyWords([...keyWords, e.currentTarget.key_word.value])
-
           e.currentTarget.key_word.value = ''
-        }}>
-        <TextInput
-          name="key_word"
-          typeInput="text"
-          />
+        }} >
+        <TextInput name="key_word" typeInput="text" />
 
         <button style={{
           backgroundColor: 'white',

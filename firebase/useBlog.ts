@@ -1,5 +1,5 @@
 import { db } from './config'
-import { collection, getDocs, doc, getDoc, deleteDoc } from "firebase/firestore"
+import { doc, getDoc, deleteDoc } from "firebase/firestore"
 
 export type BlogDocType = {
   docId: string

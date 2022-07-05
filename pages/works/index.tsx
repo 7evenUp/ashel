@@ -12,7 +12,8 @@ const Works = () => {
         imgSrc='/works/ashel_preview.png'
         githubLink='https://github.com/7evenUp/ashel'
         previewLink='https://ashel.vercel.app/'
-        accentColor='cyan' />
+        accentColor='cyan'
+      />
     </main>
   )
 }

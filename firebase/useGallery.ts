@@ -59,10 +59,8 @@ export const getGalleryDocs = async () => {
 export const deleteGalleryDoc = async (docId: string, fileName: string) => {
   try {
     await deleteDoc(doc(db, "gallery", docId))
-    console.log("Doc deleted")
     const desertRef = ref(storage, fileName)
     await deleteObject(desertRef)
-    console.log('DELETED')
   } catch (err) {
     console.error(err)
   }

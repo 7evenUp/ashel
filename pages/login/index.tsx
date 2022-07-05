@@ -73,16 +73,18 @@ const Login = () => {
           minWidth: 300,
           maxWidth: 400
         }}
-        >
+      >
         <TextInput 
           name='username'
           typeInput='text'
-          required />
+          required
+        />
 
         <TextInput 
           name='password'
           typeInput='password'
-          required />
+          required
+        />
 
         {errorMsg && <p style={{
           backgroundColor: '#F25E9C',
@@ -95,8 +97,6 @@ const Login = () => {
         <div style={{maxWidth: 300}}>
           <Button title='Login' />
         </div>
-
-        
       </form>
     </main>
   )

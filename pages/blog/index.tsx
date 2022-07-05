@@ -19,8 +19,7 @@ const Blog = () => {
           title={doc.data().title}
           date={new Date(doc.data().date.seconds * 1000).toLocaleDateString()}
           description={doc.data().description}
-          keyWords={doc.data().keyWords}
-          />
+          keyWords={doc.data().keyWords} />
       ))}
     </main>
   )

@@ -26,18 +26,18 @@ const MyReactQuill = ({ editorValue, setEditorValue }: MyReactQuillProps) => {
   ]
 
   return (
-  <ReactQuill
-    modules={modules}
-    formats={formats}
-    style={{
-      flex: 1,
-      borderLeft: '1px solid black'
-    }}
-    placeholder="Editor"
-    theme="bubble"
-    value={editorValue}
-    onChange={setEditorValue}
-  />
+    <ReactQuill
+      modules={modules}
+      formats={formats}
+      style={{
+        flex: 1,
+        borderLeft: '1px solid black'
+      }}
+      placeholder="Editor"
+      theme="bubble"
+      value={editorValue}
+      onChange={setEditorValue}
+    />
   )
 }
 

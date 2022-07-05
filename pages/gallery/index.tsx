@@ -2,8 +2,8 @@ import Image from 'next/image'
 import { GetStaticProps } from 'next'
 import GalleryCard from '../../components/GalleryCard'
 import { GalleryDocType, getGalleryDocs } from '../../firebase/useGallery'
-import styles from './gallery.module.css'
 import { getShimmerBase64 } from '../../lib/getShimmer'
+import styles from './gallery.module.css'
 
 const Gallery = ({data}: { data: Array<GalleryDocType>}) => {
   return (
@@ -14,16 +14,18 @@ const Gallery = ({data}: { data: Array<GalleryDocType>}) => {
             key={index}
             title={el.title}
             date={el.date}
-            accentColor={index % 3 === 0 ? 'red' : index % 2 === 0 ? 'cyan' : 'green'} >
+            accentColor={index % 3 === 0 ? 'red' : index % 2 === 0 ? 'cyan' : 'green'}
+          >
             <Image
-                layout="responsive"
-                width={350}
-                height={350}
-                objectFit="cover"
-                src={el.imgSrc}
-                alt="Party"
-                placeholder="blur"
-                blurDataURL={getShimmerBase64(350, 350)} />
+              layout="responsive"
+              width={350}
+              height={350}
+              objectFit="cover"
+              src={el.imgSrc}
+              alt="Party"
+              placeholder="blur"
+              blurDataURL={getShimmerBase64(350, 350)}
+            />
           </GalleryCard>
         )
       })}

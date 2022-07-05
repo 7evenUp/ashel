@@ -12,13 +12,14 @@ const GalleryCard = ({children, title, accentColor, date}: GalleryCardProps) => 
     <div className={styles.container}>
       <header
         className={styles.header}
-        style={{backgroundColor: accentColor === 'green' ? '#B1F25E' :
-                accentColor === 'cyan' ? '#5EF2E0' : '#F25E9C'}}>
+        style={{
+          backgroundColor: accentColor === 'green'
+            ? '#B1F25E' : accentColor === 'cyan'
+            ? '#5EF2E0' : '#F25E9C'
+        }}>
         {title}
         <div className={styles.date_wrapper}>
-          <span
-            className={styles.date_icon}
-            style={{backgroundImage: 'url(iconClockBold.svg)'}}></span>
+          <span className={styles.date_icon} style={{ backgroundImage: 'url(iconClockBold.svg)' }} />
           <span className={styles.date}>{date}</span>
         </div>
       </header>

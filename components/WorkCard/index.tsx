@@ -27,10 +27,11 @@ const WorkCard = ({
     <div className={styles.container}>
       <header
         className={styles.header}
-        style={{backgroundColor: accentColor === 'green' ? '#B1F25E' :
-                accentColor === 'cyan' ? '#5EF2E0' : '#F25E9C'}}>
-        {title}
-      </header>
+        style={{
+          backgroundColor: accentColor === 'green'
+            ? '#B1F25E' : accentColor === 'cyan'
+            ? '#5EF2E0' : '#F25E9C'
+        }}>{title}</header>
       <div className={styles.content}>
         <div className={styles.info}>
           <div className={styles.description}>
@@ -40,8 +41,15 @@ const WorkCard = ({
           <div className={styles.tech_stack}>
             <h2>Стек технологий</h2>
             <div>
-              {stack.map((el, index) => <span key={index} style={{backgroundColor: accentColor === 'green' ? '#B1F25E' :
-                accentColor === 'cyan' ? '#5EF2E0' : '#F25E9C'}}>{el}</span>)}
+              {stack.map((el, index) => (
+                <span
+                  key={index}
+                  style={{
+                    backgroundColor: accentColor === 'green'
+                      ? '#B1F25E' : accentColor === 'cyan'
+                      ? '#5EF2E0' : '#F25E9C'
+                  }}>{el}</span>
+              ))}
             </div>
           </div>
           <div className={styles.links}>
@@ -58,8 +66,7 @@ const WorkCard = ({
             alt={subtitle}
             layout='fill'
             placeholder="blur"
-            blurDataURL={getShimmerBase64(150, 150)}
-          />
+            blurDataURL={getShimmerBase64(150, 150)} />
         </div>
       </div>
     </div>

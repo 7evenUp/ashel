@@ -11,8 +11,11 @@ const Card = ({children, title, accentColor}: CardProps) => {
     <div className={styles.container}>
       <header
         className={styles.header}
-        style={{backgroundColor: accentColor === 'green' ? '#B1F25E' :
-                accentColor === 'cyan' ? '#5EF2E0' : '#F25E9C'}}>
+        style={{
+          backgroundColor: accentColor === 'green'
+            ? '#B1F25E' : accentColor === 'cyan'
+            ? '#5EF2E0' : '#F25E9C'
+        }}>
         {title}
       </header>
       <div className={styles.content}>

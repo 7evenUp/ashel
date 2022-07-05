@@ -42,7 +42,6 @@ const Admin = ({ user }: AdminProps) => {
           fontSize: 20
         }}>
           <li><Link href="admin/blog"><a>Блог</a></Link></li>
-          <li><Link href="admin/works"><a>Работы</a></Link></li>
           <li><Link href="admin/gallery"><a>Галерея</a></Link></li>
         </ul>
         <Button title='Logout' onClick={async () => {

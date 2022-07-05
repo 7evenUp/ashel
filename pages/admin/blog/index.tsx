@@ -1,16 +1,23 @@
-import { FormEvent, Suspense, useRef, useState } from "react"
+import { FormEvent, useRef, useState } from "react"
+import dynamic from "next/dynamic"
+import {
+  addDoc,
+  collection,
+  doc,
+  DocumentData,
+  QueryDocumentSnapshot,
+  updateDoc
+} from "firebase/firestore"
+import { useCollection } from 'react-firebase-hooks/firestore'
+import { db } from '../../../firebase/config'
+import { deleteBlogDoc } from "../../../firebase/useBlog"
 import Button from "../../../components/Button"
 import TextInput from "../../../components/Input/TextInput"
 import KeyWordsForm from "../../../components/KeyWordsForm"
-import { addDoc, collection, doc, DocumentData, QueryDocumentSnapshot, updateDoc } from "firebase/firestore"
-import { db } from '../../../firebase/config'
-
-import { useCollection } from 'react-firebase-hooks/firestore';
-import { deleteBlogDoc } from "../../../firebase/useBlog"
-import dynamic from "next/dynamic"
-const MyReactQuill = dynamic(() => import('../../../components/MyReactQuill'), {
-  ssr: false,
-})
+const MyReactQuill = dynamic(
+  () => import('../../../components/MyReactQuill'),
+  { ssr: false }
+)
 
 
 const AdminBlog = () => {
@@ -33,10 +40,6 @@ const AdminBlog = () => {
     // @ts-ignore
     formRef.current.description.value = doc.data().description
     setEditorValue(doc.data().htmlData)
-  }
-
-  const onDeleteClickHandler = () => {
-
   }
 
   const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
@@ -84,9 +87,7 @@ const AdminBlog = () => {
           <TextInput
             name="postTitle"
             typeInput="text"
-            required
-            />
-
+            required />
           <div style={{
             display: 'flex',
             flexDirection: 'column',
@@ -111,12 +112,10 @@ const AdminBlog = () => {
 
           <Button title={isPostEditing ? "Изменить пост" : "Создать пост"} />
         </form>
-        {/* <Suspense fallback={"Loading Editor..."}> */}
-          <MyReactQuill
-            editorValue={editorValue}
-            setEditorValue={setEditorValue}
-            />
-        {/* </Suspense> */}
+        <MyReactQuill
+          editorValue={editorValue}
+          setEditorValue={setEditorValue}
+          />
       </div>
 
       {error && <strong>Error: {JSON.stringify(error)}</strong>}
@@ -130,32 +129,25 @@ const AdminBlog = () => {
             Collection:{' '}
             {value.docs.map((doc) => (
               <>
-                <span key={doc.id}>
-                  {JSON.stringify(doc.data())},{' '}
-                </span>
+                <span key={doc.id}>{JSON.stringify(doc.data())},{' '}</span>
                 <button
                   onClick={() => onEditClickHandler(doc)}
                   style={{
                     maxWidth: 70,
                     padding: 8,
                     backgroundColor: 'orange'
-                  }}
-                >Edit</button>
+                  }}>Edit</button>
                 <button
-                  onClick={() => {
-                    deleteBlogDoc(doc.id)
-                  }}
+                  onClick={() => deleteBlogDoc(doc.id)}
                   style={{
                     maxWidth: 70,
                     padding: 8,
                     backgroundColor: 'lightcoral'
-                  }}
-                >Delete</button>
+                  }}>Delete</button>
               </>
             ))}
           </div>
         )}
-
     </main>
   )
 }
