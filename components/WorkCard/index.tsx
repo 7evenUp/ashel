@@ -8,9 +8,11 @@ type WorkCardProps = {
   imgSrc: string
   description: string
   stack: Array<string>
-  githubLink?: string
-  previewLink: string
   accentColor: 'green' | 'cyan' | 'red'
+  links: Array<{
+    linkUrl: string
+    linkName: string
+  }>
 }
 
 const WorkCard = ({
@@ -19,9 +21,8 @@ const WorkCard = ({
   imgSrc,
   description,
   stack,
-  githubLink,
-  previewLink,
-  accentColor
+  accentColor,
+  links
 }: WorkCardProps) => {
   return (
     <div className={styles.container}>
@@ -53,8 +54,9 @@ const WorkCard = ({
             </div>
           </div>
           <div className={styles.links}>
-            {githubLink && <a href={githubLink} target="_blank" rel="noreferrer">Ссылочка на исходник</a>}
-            <a href={previewLink}  target="_blank" rel="noreferrer">Ссылочка на проект тут</a>
+            {links.map(({linkName, linkUrl}, index) => (
+              <a key={index} href={linkUrl} target="_blank" rel="noreferrer">{linkName}</a>
+            ))}
           </div>
         </div>
         <div className={styles.preview_image}>

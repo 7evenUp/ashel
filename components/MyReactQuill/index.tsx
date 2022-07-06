@@ -1,6 +1,8 @@
-import { Dispatch, SetStateAction } from "react"
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
+import { Dispatch, LegacyRef, SetStateAction, useRef } from "react"
 import ReactQuill from "react-quill"
-import 'react-quill/dist/quill.bubble.css'
+import 'react-quill/dist/quill.snow.css'
+import { storage } from "../../firebase/config"
 
 type MyReactQuillProps = {
   editorValue: string
@@ -8,14 +10,50 @@ type MyReactQuillProps = {
 }
 
 const MyReactQuill = ({ editorValue, setEditorValue }: MyReactQuillProps) => {
+  const quillRef = useRef()
+
+  const imageHandler = () => {
+    const input = document.createElement('input')
+
+    input.setAttribute('type', 'file')
+    input.setAttribute('accept', 'image/*')
+    input.click()
+    input.onchange = async () => {
+      var file: any = input && input.files ? input.files[0] : null
+      // @ts-ignore
+      let quillObj = quillRef.current.getEditor()
+      console.log(quillObj)
+      console.log(file)
+      const storageRefName = `blog/${file.name}_test`
+
+      const storageRef = ref(storage, storageRefName)
+      try {
+        console.log('Uploading bytes...') 
+        const snapshot = await uploadBytes(storageRef, file)
+        const URL = await getDownloadURL(snapshot.ref)
+        console.log('Bytes downloaded...')
+        const range = quillObj.getSelection()
+        quillObj.editor.insertEmbed(range.index, 'image', URL)
+      }
+      catch (error: any) {
+        console.error(error)
+      }
+    }
+  }
+
   const modules = {
-    toolbar: [
-      [{ 'header': [1, 2, false] }],
-      ['bold', 'italic', 'underline','strike', 'blockquote', 'code-block'],
-      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-      ['link', 'image'],
-      ['clean']
-    ],
+    toolbar: {
+      container: [
+        [{ 'header': [1, 2, false] }],
+        ['bold', 'italic', 'underline','strike', 'blockquote', 'code-block'],
+        [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+        ['link', 'image'],
+        ['clean']
+      ],
+      handlers: {
+        image: imageHandler
+      }
+    },
   }
 
   const formats = [
@@ -27,6 +65,8 @@ const MyReactQuill = ({ editorValue, setEditorValue }: MyReactQuillProps) => {
 
   return (
     <ReactQuill
+      // @ts-ignore
+      ref={quillRef}
       modules={modules}
       formats={formats}
       style={{
@@ -34,7 +74,7 @@ const MyReactQuill = ({ editorValue, setEditorValue }: MyReactQuillProps) => {
         borderLeft: '1px solid black'
       }}
       placeholder="Editor"
-      theme="bubble"
+      theme="snow"
       value={editorValue}
       onChange={setEditorValue}
     />

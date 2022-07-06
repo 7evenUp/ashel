@@ -128,8 +128,8 @@ const AdminBlog = () => {
           }}>
             Collection:{' '}
             {value.docs.map((doc) => (
-              <>
-                <span key={doc.id}>{JSON.stringify(doc.data())},{' '}</span>
+              <div key={doc.id}>
+                <span>{JSON.stringify(doc.data())},{' '}</span>
                 <button
                   onClick={() => onEditClickHandler(doc)}
                   style={{
@@ -144,7 +144,7 @@ const AdminBlog = () => {
                     padding: 8,
                     backgroundColor: 'lightcoral'
                   }}>Delete</button>
-              </>
+              </div>
             ))}
           </div>
         )}

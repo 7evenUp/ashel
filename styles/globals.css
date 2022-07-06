@@ -31,6 +31,14 @@ code, pre {
     Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
+/* styles for text-editor created by React-Quill */
+.ql-toolbar {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 100;
+}
+
 @media (max-width: 480px) {
   pre {
     font-size: 14px;

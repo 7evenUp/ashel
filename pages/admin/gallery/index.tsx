@@ -19,25 +19,28 @@ const AdminGallery = ({data}: { data: Array<GalleryDocType>}) => {
       flexDirection: 'column',
       gap: 40
     }}>
-      <form style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 16,
-        maxWidth: 400
-      }} onSubmit={async (evt) => {
-        evt.preventDefault()
-        
-        if (blob) {
-          const title = evt.currentTarget.qtitle.value
-        
-          setLoading(true)
-          const { resultId, error } = await addDocument(blob, title)
-          setLoading(false)
+      <form
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 16,
+          maxWidth: 400
+        }}
+        onSubmit={async (evt) => {
+          evt.preventDefault()
+          
+          if (blob) {
+            const title = evt.currentTarget.qtitle.value
+          
+            setLoading(true)
+            const { resultId, error } = await addDocument(blob, title)
+            setLoading(false)
 
-          if (resultId) setDocAddedSuccess(resultId)
-          else if (error) setDocAddedError(error)
-        } else setDocAddedError('Blob is undefined') 
-      }}>
+            if (resultId) setDocAddedSuccess(resultId)
+            else if (error) setDocAddedError(error)
+          } else setDocAddedError('Blob is undefined') 
+        }}
+      >
         <b>Add gallery item</b>
         <TextInput name="qtitle" typeInput='text' required max={18} min={1} />
         <CropImage cb={setBlob} />
