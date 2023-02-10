@@ -26,19 +26,9 @@ const Header = () => {
                 <a>Блог</a>
               </Link>
             </li>
-            <li className={router.pathname === "/works" ? styles.burger_link__active : ""}>
-              <Link href={'/works'}>
-                <a>Работы</a>
-              </Link>
-            </li>
             <li className={router.pathname === "/gallery" ? styles.burger_link__active : ""}>
               <Link href={'/gallery'}>
                 <a>Галерея</a>
-              </Link>
-            </li>
-            <li className={router.pathname === "/contacts" ? styles.burger_link__active : ""}>
-              <Link href={'/contacts'}>
-                <a>Контакты</a>
               </Link>
             </li>
             {user?.isLoggedIn && (
@@ -58,19 +48,9 @@ const Header = () => {
               <a>Блог</a>
             </Link>
           </li>
-          <li className={router.pathname === "/works" ? styles.link__active : ""}>
-            <Link href={'/works'}>
-              <a>Работы</a>
-            </Link>
-          </li>
           <li className={router.pathname === "/gallery" ? styles.link__active : ""}>
             <Link href={'/gallery'}>
               <a>Галерея</a>
-            </Link>
-          </li>
-          <li className={router.pathname === "/contacts" ? styles.link__active : ""}>
-            <Link href={'/contacts'}>
-              <a>Контакты</a>
             </Link>
           </li>
           
